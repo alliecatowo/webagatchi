@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@theme {
+  --color-retro-pink: #ff9ecd;
+  --color-retro-purple: #b39ddb;
+  --color-retro-cyan: #80deea;
+  --color-retro-bg: #2d1b2e;
+  --color-retro-text: #fff0f5;
+  
+  --font-pixel: "Press Start 2P", cursive;
+  
+  --animate-scanline: scanline 8s linear infinite;
+  
+  @keyframes scanline {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 0% 100%; }
+  }
+}
+
+:root {
+  --background: #2d1b2e;
+  --foreground: #fff0f5;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-pixel), monospace;
+  overflow: hidden; /* Prevent scrolling on the main container */
+}
+
+/* CRT Overlay Effect */
+.crt-overlay {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.25) 50%
+  ), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+}
+
+.crt-flicker {
+  animation: flicker 0.15s infinite;
+  opacity: 0.05;
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: white;
+}
+
+@keyframes flicker {
+  0% { opacity: 0.02; }
+  50% { opacity: 0.05; }
+  100% { opacity: 0.02; }
+}
